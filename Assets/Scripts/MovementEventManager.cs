@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections.Generic;
+using UnityEngine;
 
 public class MovementEventManager : MonoBehaviour
 {
@@ -8,6 +10,9 @@ public class MovementEventManager : MonoBehaviour
 
     public static void TriggerMovement()
     {
-        OnPlayerMove?.Invoke();
+        if (OnPlayerMove != null)
+        {
+            OnPlayerMove();
+        }
     }
 }

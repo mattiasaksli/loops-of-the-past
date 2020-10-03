@@ -25,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private Look lookDirection = Look.LEFT;
+    private bool isMoving;
 
     void Start()
     {
@@ -35,22 +36,29 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         UpdateMovement();
-        UpdateShootProjectile();
+        if (!isMoving)
+        {
+            UpdateShootProjectile();
+        }
     }
 
     private void UpdateMovement()
     {
-        transform.position = Vector3.MoveTowards(transform.position, movePoint.position, moveSpeed * Time.deltaTime);
         if (lookDirection == Look.RIGHT) playerSprite.flipX = true;
         else if (lookDirection == Look.LEFT) playerSprite.flipX = false;
-
-        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.A) ||
-            Input.GetKeyDown(KeyCode.D) ||
-            Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow) ||
-            Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow) ||
-            Input.GetKeyDown(KeyCode.Space))
+        
+        
+        if (Vector3.Distance(transform.position, movePoint.position) == 0)
         {
-            MovementEventManager.TriggerMovement();
+            isMoving = false;
+
+            if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.A) ||
+                Input.GetKeyDown(KeyCode.D) ||
+                Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow) ||
+                Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow) ||
+                Input.GetKeyDown(KeyCode.Space))
+            {
+                MovementEventManager.TriggerMovement();
 
             if (Vector3.Distance(transform.position, movePoint.position) <= 0.05f)
             {
@@ -59,26 +67,34 @@ public class PlayerMovement : MonoBehaviour
                 Vector3 legsPosition = new Vector2(transform.position.x, transform.position.y - 0.25f);
                 spawnMovementParticles(legsPosition);
 
-                if (Mathf.Abs(horizontalInput) != 0f)
-                {
-                    Vector3 horizontalVec = new Vector3(horizontalInput, 0f, 0f);
-                    if (!Physics2D.OverlapCircle(movePoint.position + horizontalVec, 0.2f, movementCollision))
+                    if (Mathf.Abs(horizontalInput) != 0f)
                     {
-                        movePoint.position += horizontalVec;
-                        lookDirection = horizontalInput < 0 ? Look.LEFT : Look.RIGHT;
+                        isMoving = true;
+                        
+                        Vector3 horizontalVec = new Vector3(horizontalInput, 0f, 0f);
+                        if (!Physics2D.OverlapCircle(movePoint.position + horizontalVec, 0.2f, movementCollision))
+                        {
+                            movePoint.position += horizontalVec;
+                            lookDirection = horizontalInput < 0 ? Look.LEFT : Look.RIGHT;
+                        }
                     }
-                }
 
-                else if (Mathf.Abs(verticalInput) != 0f)
-                {
-                    Vector3 verticalVec = new Vector3(0f, verticalInput, 0f);
-                    if (!Physics2D.OverlapCircle(movePoint.position + verticalVec, 0.2f, movementCollision))
+                    else if (Mathf.Abs(verticalInput) != 0f)
                     {
-                        movePoint.position += verticalVec;
-                        lookDirection = verticalInput < 0 ? Look.DOWN : Look.UP;
+                        Vector3 verticalVec = new Vector3(0f, verticalInput, 0f);
+                        if (!Physics2D.OverlapCircle(movePoint.position + verticalVec, 0.2f, movementCollision))
+                        {
+                            movePoint.position += verticalVec;
+                            lookDirection = verticalInput < 0 ? Look.DOWN : Look.UP;
+                        }
                     }
                 }
             }
+        }
+        else
+        {
+            transform.position =
+                Vector3.MoveTowards(transform.position, movePoint.position, moveSpeed * Time.deltaTime);
         }
     }
 

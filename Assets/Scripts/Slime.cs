@@ -4,15 +4,99 @@ using UnityEngine;
 
 public class Slime : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public float moveSpeed = 5f;
+    public LayerMask movementCollision;
+    public Transform movePoint;
+    private Vector3 lastGeneratedVector;
+
+    //public MovementController movCon;
+
+    // private SpriteRenderer spriteRenderer;
+    //
+    // public enum Look
+    // {
+    //     UP,
+    //     LEFT,
+    //     DOWN,
+    //     RIGHT
+    // }
+    // public Look lookDirection = Look.LEFT;
+
     void Start()
     {
-        
+        //movCon = GameObject.FindGameObjectWithTag("MovementController").GetComponent<MovementController>();
+        //spriteRenderer = GetComponent<SpriteRenderer>();
+        movePoint.parent = null;
     }
 
-    // Update is called once per frame
     void Update()
     {
+        UpdateMovement();
+    }
+    
+    private void UpdateMovement()
+    {
+        // if (lookDirection == Look.RIGHT) spriteRenderer.flipX = false;
+        // else if (lookDirection == Look.LEFT) spriteRenderer.flipX = true;
+        // else if (lookDirection == Look.UP) transform.Rotate(new Vector3(0, 1, 0), 90f);
+        // else if (lookDirection == Look.DOWN)
+        // {
+        //     transform.Rotate(new Vector3(0, 1, 0), 90f);
+        //     spriteRenderer.flipX = true;
+        // }
         
+        Debug.DrawLine(transform.position, movePoint.position, Color.green, 5f);
+
+        if (Vector3.Distance(transform.position, movePoint.position) > 0)
+        {
+            if (!Physics2D.OverlapCircle(movePoint.position, 0.2f, movementCollision))
+            {
+                transform.position =
+                    Vector3.MoveTowards(transform.position, movePoint.position, moveSpeed * Time.deltaTime);
+            }
+            else
+            {
+                movePoint.position = transform.position; // Could not move there, so don't try
+            }
+        }
+
+
+
+        //transform.position += movementTargetVector * (Time.deltaTime * moveSpeed);
+    }
+
+    private void OnEnable()
+    {
+        MovementEventManager.OnPlayerMove += Move;
+    }
+
+    private void OnDisable()
+    {
+        MovementEventManager.OnPlayerMove -= Move;
+    }
+
+    private void Move()
+    {
+        lastGeneratedVector = GenerateRandomDirection();
+        movePoint.position += lastGeneratedVector;
+    }
+
+    private Vector3 GenerateRandomDirection()
+    {
+        int dice = Random.Range(1, 5);
+
+        switch (dice)
+        {
+            case 1:
+                return Vector3.left;
+            case 2:
+                return Vector3.right;
+            case 3:
+                return Vector3.up;
+            case 4:
+                return Vector3.down;
+            default:
+                return Vector3.zero;
+        }
     }
 }

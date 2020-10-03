@@ -7,6 +7,7 @@ public class HUD : MonoBehaviour
 {
 
     public static HUD Instance;
+    public GameObject heartParticles;
 
     // Start is called before the first frame update
     void Start()
@@ -16,7 +17,8 @@ public class HUD : MonoBehaviour
 
     public void RemoveLife()
     {
-        Destroy(gameObject.GetComponentsInChildren<Image>()[1]);
+        Image objectToDestroy = gameObject.GetComponentsInChildren<Image>()[1];
+        Destroy(objectToDestroy);
     }
 
 }

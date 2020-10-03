@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     public SpriteRenderer playerSprite;
     public GameObject fireballPrefab;
     public MovementEventManager movMan;
+    public GameObject playerMovementParticles;
 
     public LayerMask movementCollision;
     // TODO: create movement layer on tilemap
@@ -55,6 +56,8 @@ public class PlayerMovement : MonoBehaviour
             {
                 float horizontalInput = Input.GetAxisRaw("Horizontal");
                 float verticalInput = Input.GetAxisRaw("Vertical");
+                Vector3 legsPosition = new Vector2(transform.position.x, transform.position.y - 0.25f);
+                spawnMovementParticles(legsPosition);
 
                 if (Mathf.Abs(horizontalInput) != 0f)
                 {
@@ -114,5 +117,12 @@ public class PlayerMovement : MonoBehaviour
             fireball.movementTargetVector = movementVector;
             fireball.movementTargetPoint = prefabPos;
         }
+    }
+
+    private void spawnMovementParticles(Vector3 legsPosition)
+	{
+        GameObject particles = Instantiate(playerMovementParticles, legsPosition, Quaternion.identity);
+        particles.transform.parent = gameObject.transform;
+        Destroy(particles, 0.5f);
     }
 }

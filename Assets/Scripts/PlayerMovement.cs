@@ -11,7 +11,6 @@ public class PlayerMovement : MonoBehaviour
     public GameObject playerMovementParticles;
 
     public LayerMask movementCollision;
-    // TODO: create movement layer on tilemap
 
     public Animator anim;
 
@@ -26,12 +25,12 @@ public class PlayerMovement : MonoBehaviour
     private Look lookDirection = Look.LEFT;
     private bool isMoving;
 
-    public List<string> futureCloneActions;
+    public Stack<string> futureCloneActions;
 
     void Start()
     {
         movePoint.parent = null;
-        futureCloneActions = new List<string>();
+        futureCloneActions = new Stack<string>();
     }
 
     void Update()
@@ -150,11 +149,17 @@ public class PlayerMovement : MonoBehaviour
 
             float horizontalInput = Input.GetAxisRaw("Horizontal");
             float verticalInput = Input.GetAxisRaw("Vertical");
-            if (horizontalInput < 0) futureCloneActions.Add("left");
-            else if (horizontalInput > 0) futureCloneActions.Add("right");
-            else if (verticalInput < 0) futureCloneActions.Add("down");
-            else if (verticalInput > 0) futureCloneActions.Add("up");
-            else if (Input.GetKeyDown(KeyCode.Space)) futureCloneActions.Add("shoot");
+            if (horizontalInput < 0) futureCloneActions.Push("left");
+            else if (horizontalInput > 0) futureCloneActions.Push("right");
+            else if (verticalInput < 0) futureCloneActions.Push("down");
+            else if (verticalInput > 0) futureCloneActions.Push("up");
+            else if (Input.GetKeyDown(KeyCode.Space)) futureCloneActions.Push("shoot");
         }
+        
+        // else if (Input.GetKeyDown(KeyCode.C))
+        // {
+        //     EvilCloneController evilClone = Instantiate(Resources.Load("EvilClone") as GameObject, new Vector3(0.5f, 0.5f, 0f), Quaternion.identity).GetComponent<EvilCloneController>();
+        //     evilClone.ActionList = new Stack<string>(futureCloneActions);
+        // }
     }
 }

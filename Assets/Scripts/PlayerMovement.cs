@@ -50,7 +50,7 @@ public class PlayerMovement : MonoBehaviour
             Input.GetKeyDown(KeyCode.Space))
         {
             MovementEventManager.TriggerMovement();
-            
+
             if (Vector3.Distance(transform.position, movePoint.position) <= 0.05f)
             {
                 float horizontalInput = Input.GetAxisRaw("Horizontal");
@@ -86,7 +86,6 @@ public class PlayerMovement : MonoBehaviour
             Vector3 prefabPos = transform.position;
             Quaternion prefabRot = transform.rotation;
             Vector3 movementVector = new Vector3(0, 0, 0);
-            Vector3 movementPoint;
             if (lookDirection == Look.LEFT)
             {
                 prefabPos.x -= 1;
@@ -110,11 +109,10 @@ public class PlayerMovement : MonoBehaviour
                 prefabRot = Quaternion.Euler(0, 0, -90);
                 movementVector.y = -1;
             }
-            movementPoint = prefabPos + movementVector;
-            
+
             Fireball fireball = Instantiate(fireballPrefab, prefabPos, prefabRot).GetComponent<Fireball>();
             fireball.movementTargetVector = movementVector;
-            fireball.movementTargetPoint = movementPoint;
+            fireball.movementTargetPoint = prefabPos;
         }
     }
 }

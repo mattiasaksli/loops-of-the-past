@@ -43,13 +43,6 @@ public class PlayerMovement : MonoBehaviour
                     movePoint.position += verticalVec;
                 }
             }
-
-            anim.SetBool("moving", false);
-        }
-
-        else
-        {
-            anim.SetBool("moving", true);
         }
     }
 }

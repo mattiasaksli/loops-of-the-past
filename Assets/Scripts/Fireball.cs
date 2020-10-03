@@ -42,4 +42,19 @@ public class Fireball : MonoBehaviour
 
         transform.position += movementTargetVector * (Time.deltaTime * moveSpeed);
     }
+
+	private void OnTriggerEnter2D(Collider2D other)
+	{
+        if (other.gameObject.GetComponent<Slime>())
+        {
+            Destroy(other.gameObject);
+            Destroy(gameObject);
+        }
+    }
+
+	private void OnBecameInvisible()
+	{
+        Destroy(gameObject);
+	}
+
 }

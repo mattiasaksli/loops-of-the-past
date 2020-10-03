@@ -1,12 +1,14 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class Fireball : MonoBehaviour
 {
     public float moveSpeed = 5f;
     public Vector3 movementTargetVector;
+    public Vector3 movementTargetPoint;
+    
     //public MovementController movCon;
 
     // private SpriteRenderer spriteRenderer;
@@ -26,8 +28,8 @@ public class Fireball : MonoBehaviour
         //spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    
-    void Update()
+
+    private void Update()
     {
         // if (lookDirection == Look.RIGHT) spriteRenderer.flipX = false;
         // else if (lookDirection == Look.LEFT) spriteRenderer.flipX = true;
@@ -38,9 +40,24 @@ public class Fireball : MonoBehaviour
         //     spriteRenderer.flipX = true;
         // }
         
-        //transform.position = Vector3.MoveTowards(transform.position, movementTargetVector, moveSpeed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, movementTargetPoint, moveSpeed * Time.deltaTime);
 
-        transform.position += movementTargetVector * (Time.deltaTime * moveSpeed);
+        //transform.position += movementTargetVector * (Time.deltaTime * moveSpeed);
+    }
+
+    private void OnEnable()
+    {
+        MovementEventManager.OnPlayerMove += Move;
+    }
+
+    private void OnDisable()
+    {
+        MovementEventManager.OnPlayerMove -= Move;
+    }
+
+    private void Move()
+    {
+        movementTargetPoint += movementTargetVector;
     }
 
 	private void OnTriggerEnter2D(Collider2D other)

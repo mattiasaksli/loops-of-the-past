@@ -42,6 +42,9 @@ public class PlayerMovement : MonoBehaviour
         {
             UpdateShootProjectile();
         }
+
+        Debug.Log(anim.runtimeAnimatorController);
+        anim.SetBool("Moving", isMoving);
     }
 
     private void UpdateMovement()

@@ -7,7 +7,6 @@ public class HUD : MonoBehaviour
 {
 
     public static HUD Instance;
-    public GameObject LifePanel;
 
     // Start is called before the first frame update
     void Start()
@@ -17,7 +16,7 @@ public class HUD : MonoBehaviour
 
     public void RemoveLife()
     {
-        Destroy(LifePanel.GetComponentsInChildren<Image>()[1]);
+        Destroy(gameObject.GetComponentsInChildren<Image>()[1]);
     }
 
 }

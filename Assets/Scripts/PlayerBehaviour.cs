@@ -25,6 +25,7 @@ public class PlayerBehaviour : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        
         if (other.gameObject.GetComponent<Slime>())
         {
             Destroy(other.gameObject);

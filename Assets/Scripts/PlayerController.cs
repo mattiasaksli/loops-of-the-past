@@ -97,6 +97,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            anim.SetBool("isShooting", true);
             Vector3 prefabPos = transform.position;
             Quaternion prefabRot = transform.rotation;
             Vector3 movementVector = new Vector3(0, 0, 0);
@@ -127,6 +128,8 @@ public class PlayerController : MonoBehaviour
             Fireball fireball = Instantiate(fireballPrefab, transform.position, prefabRot).GetComponent<Fireball>();
             fireball.movementTargetVector = movementVector;
             fireball.movementTargetPoint = prefabPos;
+            
+            Invoke("setShootingFalse", 0.5f);
         }
     }
 
@@ -159,5 +162,10 @@ public class PlayerController : MonoBehaviour
             else if (verticalInput > 0) futureCloneActions.Push("up");
             else if (Input.GetKeyDown(KeyCode.Space)) futureCloneActions.Push("shoot");
         }
+    }
+
+    private void setShootingFalse()
+    {
+        anim.SetBool("isShooting", false);
     }
 }

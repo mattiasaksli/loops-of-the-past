@@ -54,7 +54,7 @@ public class EnemiesManager : MonoBehaviour
         enemyObjects.Remove(enemy);
         if (enemyObjects.Count == 0)
         {
-            WinLevel();
+            Invoke("WinLevel", 2f);
         }
     }
 

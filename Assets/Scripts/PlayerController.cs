@@ -15,6 +15,9 @@ public class PlayerController : MonoBehaviour
 
     public Animator anim;
 
+    private float endMovementCooldown;
+    public float cooldownDuration = 0.2f;
+
     private enum Look
     {
         UP,
@@ -37,6 +40,14 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        transform.position =
+            Vector3.MoveTowards(transform.position, movePoint.position, moveSpeed * Time.deltaTime);
+
+        if (Time.time > endMovementCooldown)
+        {
+            isInputDisabled = false;
+        }
+        
         if (!isInputDisabled)
         {
             UpdateMovementEvent();
@@ -68,6 +79,9 @@ public class PlayerController : MonoBehaviour
                 isMoving = true;
                 Vector3 horizontalVec = new Vector3(horizontalInput, 0f, 0f);
                 lookDirection = horizontalInput < 0 ? Look.LEFT : Look.RIGHT;
+                
+                isInputDisabled = true;
+                endMovementCooldown = Time.time + cooldownDuration;
 
                 if (!Physics2D.OverlapCircle(movePoint.position + horizontalVec, 0.2f, movementCollision))
                 {
@@ -81,6 +95,9 @@ public class PlayerController : MonoBehaviour
                 isMoving = true;
                 Vector3 verticalVec = new Vector3(0f, verticalInput, 0f);
                 lookDirection = verticalInput < 0 ? Look.DOWN : Look.UP;
+                
+                isInputDisabled = true;
+                endMovementCooldown = Time.time + cooldownDuration;
 
                 if (!Physics2D.OverlapCircle(movePoint.position + verticalVec, 0.2f, movementCollision))
                 {
@@ -88,9 +105,6 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
-
-        transform.position =
-            Vector3.MoveTowards(transform.position, movePoint.position, moveSpeed * Time.deltaTime);
     }
 
     private void UpdateShootProjectile()
@@ -130,6 +144,9 @@ public class PlayerController : MonoBehaviour
             fireball.movementTargetPoint = prefabPos;
             
             Invoke("setShootingFalse", 0.5f);
+            
+            isInputDisabled = true;
+            endMovementCooldown = Time.time + cooldownDuration;
         }
     }
 

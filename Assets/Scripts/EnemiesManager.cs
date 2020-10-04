@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class EnemiesManager : MonoBehaviour
 {
-    public PlayerMovement player;
+    public PlayerController player;
     public List<GameObject> enemyObjects;
     public GameObject WinUI;
     private int scene;
@@ -14,7 +14,7 @@ public class EnemiesManager : MonoBehaviour
     void Start()
     {
         scene = SceneManager.GetActiveScene().buildIndex;
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         WinUI = GameObject.FindGameObjectWithTag("WinUI");
         WinUI.SetActive(false);
 
@@ -54,5 +54,6 @@ public class EnemiesManager : MonoBehaviour
     {
         InputSaver.saver.SetInputActions(player.futureCloneActions);
         WinUI.SetActive(true);
+        PlayerController.isInputDisabled = true;
     }
 }

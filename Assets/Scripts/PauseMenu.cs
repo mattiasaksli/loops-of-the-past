@@ -8,7 +8,7 @@ public class PauseMenu : MonoBehaviour
 {
     public bool isPaused;
     public GameObject pauseMenu;
-    public PlayerMovement PlayerMovement;
+    public PlayerController playerController;
     
     public void QuitGame()
     {
@@ -19,14 +19,14 @@ public class PauseMenu : MonoBehaviour
     {
         Time.timeScale = 1;
         pauseMenu.SetActive(false);
-        PlayerMovement.enabled = true;
+        playerController.enabled = true;
     }
 
     public void PauseGame()
     {
         Time.timeScale = 0;
         pauseMenu.SetActive(true);
-        PlayerMovement.enabled = false;
+        playerController.enabled = false;
     }
 
     private void Update()

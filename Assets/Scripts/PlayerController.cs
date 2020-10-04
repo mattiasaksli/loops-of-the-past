@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     public float moveSpeed = 5f;
     public Transform movePoint;
     public SpriteRenderer playerSprite;
     public GameObject fireballPrefab;
     public GameObject playerMovementParticles;
+    public static bool isInputDisabled;
 
     public LayerMask movementCollision;
 
@@ -29,20 +30,24 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
+        isInputDisabled = false;
         movePoint.parent = null;
         futureCloneActions = new Stack<string>();
     }
 
     void Update()
     {
-        UpdateMovementEvent();
-        UpdateMovement();
-        if (!isMoving)
+        if (!isInputDisabled)
         {
-            UpdateShootProjectile();
-        }
+            UpdateMovementEvent();
+            UpdateMovement();
+            if (!isMoving)
+            {
+                UpdateShootProjectile();
+            }
 
-        anim.SetBool("Moving", isMoving);
+            anim.SetBool("Moving", isMoving);
+        }
     }
 
     private void UpdateMovement()
@@ -83,7 +88,7 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
         }
-        
+
         transform.position =
             Vector3.MoveTowards(transform.position, movePoint.position, moveSpeed * Time.deltaTime);
     }

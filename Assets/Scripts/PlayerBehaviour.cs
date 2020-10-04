@@ -7,20 +7,18 @@ using UnityEngine.SceneManagement;
 public class PlayerBehaviour : MonoBehaviour
 {
 
+    public Animator anim;
     public int Lives = 3;
+    public bool isDead;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
-        if (Lives < 1) 
+        if (Lives < 1)
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            isDead = true;
+            PlayerController.isInputDisabled = true;
+            anim.SetBool("isDead", isDead);
+            Invoke("PlayerDeath", 1f);
         }
     }
 
@@ -48,4 +46,9 @@ public class PlayerBehaviour : MonoBehaviour
         }
     }
 
+    private void PlayerDeath()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+    
 }

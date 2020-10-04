@@ -42,7 +42,6 @@ public class PlayerMovement : MonoBehaviour
             UpdateShootProjectile();
         }
 
-        Debug.Log(anim.runtimeAnimatorController);
         anim.SetBool("Moving", isMoving);
     }
 
@@ -60,6 +59,7 @@ public class PlayerMovement : MonoBehaviour
 
             if (Mathf.Abs(horizontalInput) != 0f)
             {
+                AudioManager.Instance.Play("PlayerWalking");
                 isMoving = true;
                 Vector3 horizontalVec = new Vector3(horizontalInput, 0f, 0f);
                 lookDirection = horizontalInput < 0 ? Look.LEFT : Look.RIGHT;
@@ -72,6 +72,7 @@ public class PlayerMovement : MonoBehaviour
 
             else if (Mathf.Abs(verticalInput) != 0f)
             {
+                AudioManager.Instance.Play("PlayerWalking");
                 isMoving = true;
                 Vector3 verticalVec = new Vector3(0f, verticalInput, 0f);
                 lookDirection = verticalInput < 0 ? Look.DOWN : Look.UP;
@@ -82,7 +83,7 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
         }
-
+        
         transform.position =
             Vector3.MoveTowards(transform.position, movePoint.position, moveSpeed * Time.deltaTime);
     }

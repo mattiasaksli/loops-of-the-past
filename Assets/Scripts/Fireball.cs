@@ -9,6 +9,11 @@ public class Fireball : MonoBehaviour
     public Vector3 movementTargetVector;
     public Vector3 movementTargetPoint;
 
+    private void Start()
+    {
+        AudioManager.Instance.Play("Fireball");
+    }
+
     private void Update()
     {
         transform.position = Vector3.MoveTowards(transform.position, movementTargetPoint, moveSpeed * Time.deltaTime);

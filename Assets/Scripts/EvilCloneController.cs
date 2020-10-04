@@ -68,7 +68,6 @@ public class EvilCloneController : MonoBehaviour
 
     private void SetNextAction()
     {
-        NextActionSprite.transform.rotation = Quaternion.identity;
         if (ActionList.Count != 0)
         {
             string listAction = ActionList.Pop();

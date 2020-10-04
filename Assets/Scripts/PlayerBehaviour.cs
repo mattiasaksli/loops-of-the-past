@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel.Design.Serialization;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -28,6 +29,8 @@ public class PlayerBehaviour : MonoBehaviour
         
         if (other.gameObject.GetComponent<Slime>())
         {
+            AudioManager.Instance.Play("Hit");
+            
             Destroy(other.gameObject);
             HUD.Instance.RemoveLife();
 
@@ -36,6 +39,8 @@ public class PlayerBehaviour : MonoBehaviour
 
         if (other.gameObject.GetComponent<Fireball>())
         {
+            AudioManager.Instance.Play("Hit");
+            
             Destroy(other.gameObject);
             HUD.Instance.RemoveLife();
 

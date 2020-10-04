@@ -10,4 +10,9 @@ public class GoToNextLevel : MonoBehaviour
         gameObject.SetActive(false);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
+
+    public void WinGame()
+    {
+        Application.Quit();
+    }
 }

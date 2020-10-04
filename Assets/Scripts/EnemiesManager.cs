@@ -35,6 +35,13 @@ public class EnemiesManager : MonoBehaviour
             InputSaver.saver.SetInputActions(new Stack<string>());
         }
 
+        if (scene == 4)
+        {
+            EvilCloneController evilClone = Instantiate(Resources.Load("EvilClone") as GameObject, new Vector3(-2.5f, -1.5f, 0f), Quaternion.identity).GetComponent<EvilCloneController>();
+            evilClone.ActionList = new Stack<string>(InputSaver.saver.GetInputActions());
+            evilClone.gameObject.transform.parent = transform;
+        }
+
         enemyObjects = new List<GameObject>(GameObject.FindGameObjectsWithTag("Enemy"));
     }
 

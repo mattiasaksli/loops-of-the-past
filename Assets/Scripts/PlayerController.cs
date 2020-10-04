@@ -25,7 +25,6 @@ public class PlayerController : MonoBehaviour
 
     private Look lookDirection = Look.LEFT;
     private bool isMoving;
-    private bool isShooting = false;
 
     public Stack<string> futureCloneActions;
 

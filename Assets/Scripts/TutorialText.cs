@@ -10,7 +10,7 @@ public class TutorialText : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(ShowMessage("Press space to attack, use WASD to move. Press Escape to pause.", 5));
+        StartCoroutine(ShowMessage("Space to attack, \nWASD to move, \nEsc to pause.", 5));
     }
 
     IEnumerator ShowMessage(string message, float delay)

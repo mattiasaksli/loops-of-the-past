@@ -31,7 +31,7 @@ public class Slime : MonoBehaviour
         //spriteRenderer = GetComponent<SpriteRenderer>();
         movePoint.parent = null;
         spriteRenderer = GetComponent<SpriteRenderer>();
-        //spriteRenderer.color = GenerateColor();
+        spriteRenderer.color = GenerateColor();
     }
 
     void Update()
@@ -106,11 +106,17 @@ public class Slime : MonoBehaviour
         switch (dice)
         {
             case 1:
-                return Color.blue;
+                Color gcolor = new Color();
+                ColorUtility.TryParseHtmlString ("#8cba80", out gcolor);
+                return gcolor;
             case 2:
-                return Color.yellow;
+                Color bcolor = new Color();
+                ColorUtility.TryParseHtmlString ("#639bff", out bcolor);
+                return bcolor;
             default:
-                return Color.green;
+                Color scolor = new Color();
+                ColorUtility.TryParseHtmlString ("#cf995f", out scolor);
+                return scolor;
         }
     }
 

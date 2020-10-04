@@ -41,8 +41,7 @@ public class PlayerMovement : MonoBehaviour
         {
             UpdateShootProjectile();
         }
-
-        Debug.Log(anim.runtimeAnimatorController);
+        
         anim.SetBool("Moving", isMoving);
     }
 
@@ -58,7 +57,7 @@ public class PlayerMovement : MonoBehaviour
             float horizontalInput = Input.GetAxisRaw("Horizontal");
             float verticalInput = Input.GetAxisRaw("Vertical");
 
-            if (Mathf.Abs(horizontalInput) != 0f)
+            if (Mathf.Abs(horizontalInput) != 0f && (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D)))
             {
                 isMoving = true;
                 Vector3 horizontalVec = new Vector3(horizontalInput, 0f, 0f);
@@ -70,7 +69,7 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
 
-            else if (Mathf.Abs(verticalInput) != 0f)
+            else if (Mathf.Abs(verticalInput) != 0f && (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S)))
             {
                 isMoving = true;
                 Vector3 verticalVec = new Vector3(0f, verticalInput, 0f);
@@ -135,8 +134,6 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.A) ||
             Input.GetKeyDown(KeyCode.D) ||
-            Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow) ||
-            Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow) ||
             Input.GetKeyDown(KeyCode.Space))
         {
             if (!Input.GetKeyDown(KeyCode.Space))

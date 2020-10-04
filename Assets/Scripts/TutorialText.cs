@@ -6,24 +6,18 @@ using TMPro;
 
 public class TutorialText : MonoBehaviour
 {
-
     public TextMeshProUGUI tutorialText;
-    // Start is called before the first frame update
+
     void Start()
     {
-        StartCoroutine(ShowMessage("Press space to attack, use WASD to move. Watch out for th...", 5));
+        StartCoroutine(ShowMessage("Press space to attack, use WASD to move. Press Escape to pause.", 5));
     }
 
-    // Update is called once per frame
-    void Update()
+    IEnumerator ShowMessage(string message, float delay)
     {
-        
+        tutorialText.text = message;
+        tutorialText.enabled = true;
+        yield return new WaitForSeconds(delay);
+        tutorialText.enabled = false;
     }
-
-     IEnumerator ShowMessage (string message, float delay) {
-     tutorialText.text = message;
-     tutorialText.enabled = true;
-     yield return new WaitForSeconds(delay);
-     tutorialText.enabled = false;
- }
 }

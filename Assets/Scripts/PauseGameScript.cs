@@ -13,10 +13,5 @@ public class PauseAndResumeScript : MonoBehaviour
         Debug.Log("Game Paused");
     }
 
-    public void ResumeGame()
-    {
-        Time.timeScale = 1;
-        SceneManager.UnloadSceneAsync("PauseMenuScene");
-        Debug.Log("Game Resumed");
-    }
+    
 }

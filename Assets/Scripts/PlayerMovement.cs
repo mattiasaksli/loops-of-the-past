@@ -57,7 +57,7 @@ public class PlayerMovement : MonoBehaviour
             float horizontalInput = Input.GetAxisRaw("Horizontal");
             float verticalInput = Input.GetAxisRaw("Vertical");
 
-            if (Mathf.Abs(horizontalInput) != 0f)
+            if (Mathf.Abs(horizontalInput) != 0f && (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D)))
             {
                 AudioManager.Instance.Play("PlayerWalking");
                 isMoving = true;
@@ -70,7 +70,7 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
 
-            else if (Mathf.Abs(verticalInput) != 0f)
+            else if (Mathf.Abs(verticalInput) != 0f && (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S)))
             {
                 AudioManager.Instance.Play("PlayerWalking");
                 isMoving = true;
@@ -136,8 +136,6 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.A) ||
             Input.GetKeyDown(KeyCode.D) ||
-            Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow) ||
-            Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow) ||
             Input.GetKeyDown(KeyCode.Space))
         {
             if (!Input.GetKeyDown(KeyCode.Space))

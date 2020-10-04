@@ -15,7 +15,7 @@ public class PlayerBehaviour : MonoBehaviour
         if (Lives < 1)
         {
             isDead = true;
-            PlayerController.isInputDisabled = true;
+            PlayerController.isDead = true;
             anim.SetBool("isDead", isDead);
             Invoke("PlayerDeath", 1f);
         }
@@ -36,6 +36,16 @@ public class PlayerBehaviour : MonoBehaviour
         }
 
         if (other.gameObject.GetComponent<Fireball>())
+        {
+            AudioManager.Instance.Play("Hit");
+            
+            Destroy(other.gameObject);
+            HUD.Instance.RemoveLife();
+
+            Lives -= 1;
+        }
+        
+        if (other.gameObject.GetComponent<EvilCloneController>())
         {
             AudioManager.Instance.Play("Hit");
             

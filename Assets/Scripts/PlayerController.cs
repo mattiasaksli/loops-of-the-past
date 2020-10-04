@@ -10,6 +10,7 @@ public class PlayerController : MonoBehaviour
     public GameObject fireballPrefab;
     public GameObject playerMovementParticles;
     public static bool isInputDisabled;
+    public static bool isDead;
 
     public LayerMask movementCollision;
 
@@ -34,6 +35,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         isInputDisabled = false;
+        isDead = false;
         movePoint.parent = null;
         futureCloneActions = new Stack<string>();
     }
@@ -46,6 +48,12 @@ public class PlayerController : MonoBehaviour
         if (Time.time > endMovementCooldown)
         {
             isInputDisabled = false;
+        }
+
+        if (isDead)
+        {
+            isInputDisabled = true;
+            endMovementCooldown = 5f;
         }
         
         if (!isInputDisabled)
@@ -139,7 +147,7 @@ public class PlayerController : MonoBehaviour
                 movementVector.y = -1;
             }
 
-            Fireball fireball = Instantiate(fireballPrefab, transform.position, prefabRot).GetComponent<Fireball>();
+            Fireball fireball = Instantiate(fireballPrefab, transform.position + (0.5f * movementVector), prefabRot).GetComponent<Fireball>();
             fireball.movementTargetVector = movementVector;
             fireball.movementTargetPoint = prefabPos;
             

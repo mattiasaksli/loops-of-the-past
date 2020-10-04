@@ -14,6 +14,8 @@ public class PlayerMovement : MonoBehaviour
 
     public Animator anim;
 
+    private PlayerBehaviour playerBehaviour;
+
     private enum Look
     {
         UP,
@@ -31,12 +33,17 @@ public class PlayerMovement : MonoBehaviour
     {
         movePoint.parent = null;
         futureCloneActions = new Stack<string>();
+        playerBehaviour = GetComponent<PlayerBehaviour>();
     }
 
     void Update()
     {
         UpdateMovementEvent();
-        UpdateMovement();
+
+        if (!playerBehaviour.isDead)
+        {
+            UpdateMovement();   
+        }
         if (!isMoving)
         {
             UpdateShootProjectile();
@@ -155,10 +162,10 @@ public class PlayerMovement : MonoBehaviour
             else if (Input.GetKeyDown(KeyCode.Space)) futureCloneActions.Push("shoot");
         }
         
-        // else if (Input.GetKeyDown(KeyCode.C))
-        // {
-        //     EvilCloneController evilClone = Instantiate(Resources.Load("EvilClone") as GameObject, new Vector3(0.5f, 0.5f, 0f), Quaternion.identity).GetComponent<EvilCloneController>();
-        //     evilClone.ActionList = new Stack<string>(futureCloneActions);
-        // }
+        else if (Input.GetKeyDown(KeyCode.C))
+        {
+            EvilCloneController evilClone = Instantiate(Resources.Load("EvilClone") as GameObject, new Vector3(0.5f, 0.5f, 0f), Quaternion.identity).GetComponent<EvilCloneController>();
+            evilClone.ActionList = new Stack<string>(futureCloneActions);
+        }
     }
 }

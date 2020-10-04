@@ -10,6 +10,7 @@ public class Slime : MonoBehaviour
     public LayerMask movementCollision;
     public Transform movePoint;
     private Vector3 lastGeneratedVector;
+    private SpriteRenderer spriteRenderer;
 
     //public MovementController movCon;
 
@@ -29,6 +30,8 @@ public class Slime : MonoBehaviour
         //movCon = GameObject.FindGameObjectWithTag("MovementController").GetComponent<MovementController>();
         //spriteRenderer = GetComponent<SpriteRenderer>();
         movePoint.parent = null;
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        //spriteRenderer.color = GenerateColor();
     }
 
     void Update()
@@ -99,6 +102,21 @@ public class Slime : MonoBehaviour
                 return Vector3.down;
             default:
                 return Vector3.zero;
+        }
+    }
+
+    private Color GenerateColor()
+    {
+        int dice = Random.Range(1, 4);
+        
+        switch (dice)
+        {
+            case 1:
+                return Color.blue;
+            case 2:
+                return Color.yellow;
+            default:
+                return Color.green;
         }
     }
 

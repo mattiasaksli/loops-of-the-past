@@ -28,7 +28,8 @@ public class PlayerBehaviour : MonoBehaviour
         if (other.gameObject.GetComponent<Slime>())
         {
             AudioManager.Instance.Play("Hit");
-            
+
+            other.GetComponent<Slime>().Kill();
             Destroy(other.gameObject);
             HUD.Instance.RemoveLife();
 

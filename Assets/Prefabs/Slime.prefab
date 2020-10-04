@@ -15,8 +15,8 @@ GameObject:
   - component: {fileID: 459359169553902832}
   - component: {fileID: 459359169553902846}
   m_Layer: 0
-  m_Name: Slime 1
-  m_TagString: Untagged
+  m_Name: Slime
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -92,7 +92,7 @@ SpriteRenderer:
   m_SortingLayerID: 763434269
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 8069619478552258361, guid: 6dc222ac016482442b53c232d6d34ac8,
+  m_Sprite: {fileID: -5977197465167853462, guid: c66c0bdfbe7d92c47b7fbe7eba499a11,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

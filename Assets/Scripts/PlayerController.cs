@@ -2,19 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     public float moveSpeed = 5f;
     public Transform movePoint;
     public SpriteRenderer playerSprite;
     public GameObject fireballPrefab;
     public GameObject playerMovementParticles;
+    public static bool isInputDisabled;
 
     public LayerMask movementCollision;
 
     public Animator anim;
-
-    private PlayerBehaviour playerBehaviour;
 
     private enum Look
     {
@@ -32,26 +31,24 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
+        isInputDisabled = false;
         movePoint.parent = null;
         futureCloneActions = new Stack<string>();
-        playerBehaviour = GetComponent<PlayerBehaviour>();
     }
 
     void Update()
     {
-        Debug.Log(anim.GetBool("isShooting"));
-        UpdateMovementEvent();
-
-        if (!playerBehaviour.isDead)
+        if (!isInputDisabled)
         {
-            UpdateMovement();   
-        }
-        if (!isMoving)
-        {
-            UpdateShootProjectile();
-        }
+            UpdateMovementEvent();
+            UpdateMovement();
+            if (!isMoving)
+            {
+                UpdateShootProjectile();
+            }
 
-        anim.SetBool("Moving", isMoving);
+            anim.SetBool("Moving", isMoving);
+        }
     }
 
     private void UpdateMovement()
@@ -92,7 +89,7 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
         }
-        
+
         transform.position =
             Vector3.MoveTowards(transform.position, movePoint.position, moveSpeed * Time.deltaTime);
     }
@@ -165,12 +162,6 @@ public class PlayerMovement : MonoBehaviour
             else if (verticalInput < 0) futureCloneActions.Push("down");
             else if (verticalInput > 0) futureCloneActions.Push("up");
             else if (Input.GetKeyDown(KeyCode.Space)) futureCloneActions.Push("shoot");
-        }
-        
-        else if (Input.GetKeyDown(KeyCode.C))
-        {
-            EvilCloneController evilClone = Instantiate(Resources.Load("EvilClone") as GameObject, new Vector3(0.5f, 0.5f, 0f), Quaternion.identity).GetComponent<EvilCloneController>();
-            evilClone.ActionList = new Stack<string>(futureCloneActions);
         }
     }
 

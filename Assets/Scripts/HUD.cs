@@ -8,8 +8,7 @@ public class HUD : MonoBehaviour
 
     public static HUD Instance;
     public GameObject heartParticles;
-
-    // Start is called before the first frame update
+    
     void Start()
     {
         Instance = this;

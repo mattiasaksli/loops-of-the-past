@@ -9,20 +9,14 @@ public class PlayerBehaviour : MonoBehaviour
 
     public Animator anim;
     public int Lives = 3;
-    public bool isDead = false;
+    public bool isDead;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
         if (Lives < 1)
         {
             isDead = true;
+            PlayerController.isInputDisabled = true;
             anim.SetBool("isDead", isDead);
             Invoke("PlayerDeath", 1f);
         }
@@ -34,7 +28,8 @@ public class PlayerBehaviour : MonoBehaviour
         if (other.gameObject.GetComponent<Slime>())
         {
             AudioManager.Instance.Play("Hit");
-            
+
+            other.GetComponent<Slime>().Kill();
             Destroy(other.gameObject);
             HUD.Instance.RemoveLife();
 

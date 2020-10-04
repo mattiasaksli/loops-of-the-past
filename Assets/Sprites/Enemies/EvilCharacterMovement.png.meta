@@ -1,25 +1,28 @@
 fileFormatVersion: 2
-guid: 6dc222ac016482442b53c232d6d34ac8
+guid: 703fce27bc7f53346a5199a00e455f3e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8069619478552258361
-    second: slime1_0
+      213: 1823236456918601116
+    second: EvilCharacterMovement_0
   - first:
-      213: -3041987457767028285
-    second: slime1_1
+      213: 6751586286952507714
+    second: EvilCharacterMovement_1
   - first:
-      213: -2851724377359858702
-    second: slime1_2
+      213: 3358421988916128308
+    second: EvilCharacterMovement_2
   - first:
-      213: 8666801654570291683
-    second: slime1_3
+      213: -5307730726139705768
+    second: EvilCharacterMovement_3
   - first:
-      213: 4716848356589353756
-    second: slime1_4
+      213: 7806322159321316692
+    second: EvilCharacterMovement_4
   - first:
-      213: 5794092588957780287
-    second: slime1_5
+      213: -2227506892012663055
+    second: EvilCharacterMovement_5
+  - first:
+      213: -1297749578441775417
+    second: EvilCharacterMovement_6
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -117,12 +120,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: slime1_0
+      name: EvilCharacterMovement_0
       rect:
         serializedVersion: 2
-        x: 0
+        x: 3
         y: 0
-        width: 16
+        width: 12
         height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -131,19 +134,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9372eab392c0dff60800000000000000
-      internalID: 8069619478552258361
+      spriteID: c9dcc2cc5ef6d4910800000000000000
+      internalID: 1823236456918601116
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: slime1_1
+      name: EvilCharacterMovement_1
       rect:
         serializedVersion: 2
-        x: 16
+        x: 19
         y: 0
-        width: 16
+        width: 12
         height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -152,19 +155,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3c94a983680b8c5d0800000000000000
-      internalID: -3041987457767028285
+      spriteID: 249e330e4f372bd50800000000000000
+      internalID: 6751586286952507714
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: slime1_2
+      name: EvilCharacterMovement_2
       rect:
         serializedVersion: 2
-        x: 32
+        x: 34
         y: 0
-        width: 16
+        width: 12
         height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -173,19 +176,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2f3c422b9c3ac68d0800000000000000
-      internalID: -2851724377359858702
+      spriteID: 43ae43751038b9e20800000000000000
+      internalID: 3358421988916128308
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: slime1_3
+      name: EvilCharacterMovement_3
       rect:
         serializedVersion: 2
-        x: 48
+        x: 50
         y: 0
-        width: 16
+        width: 12
         height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -194,19 +197,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3e11e67af2aa64870800000000000000
-      internalID: 8666801654570291683
+      spriteID: 8564401b6072756b0800000000000000
+      internalID: -5307730726139705768
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: slime1_4
+      name: EvilCharacterMovement_4
       rect:
         serializedVersion: 2
-        x: 64
+        x: 66
         y: 0
-        width: 16
+        width: 12
         height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -215,19 +218,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c1bb4e1e69c957140800000000000000
-      internalID: 4716848356589353756
+      spriteID: 45d7b9ce4a0a55c60800000000000000
+      internalID: 7806322159321316692
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: slime1_5
+      name: EvilCharacterMovement_5
       rect:
         serializedVersion: 2
-        x: 80
+        x: 83
         y: 0
-        width: 16
+        width: 12
         height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -236,8 +239,29 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f394d80e280c86050800000000000000
-      internalID: 5794092588957780287
+      spriteID: 1fec9d6984e4611e0800000000000000
+      internalID: -2227506892012663055
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EvilCharacterMovement_6
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 0
+        width: 12
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c6a09952a77dfde0800000000000000
+      internalID: -1297749578441775417
       vertices: []
       indices: 
       edges: []

@@ -1,6 +1,8 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Slime : MonoBehaviour
 {
@@ -97,6 +99,14 @@ public class Slime : MonoBehaviour
                 return Vector3.down;
             default:
                 return Vector3.zero;
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.Play("Hit");   
         }
     }
 }

@@ -26,6 +26,7 @@ public class PlayerMovement : MonoBehaviour
 
     private Look lookDirection = Look.LEFT;
     private bool isMoving;
+    private bool isShooting = false;
 
     public Stack<string> futureCloneActions;
 
@@ -38,6 +39,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        Debug.Log(anim.GetBool("isShooting"));
         UpdateMovementEvent();
 
         if (!playerBehaviour.isDead)
@@ -99,6 +101,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            anim.SetBool("isShooting", true);
             Vector3 prefabPos = transform.position;
             Quaternion prefabRot = transform.rotation;
             Vector3 movementVector = new Vector3(0, 0, 0);
@@ -129,6 +132,8 @@ public class PlayerMovement : MonoBehaviour
             Fireball fireball = Instantiate(fireballPrefab, transform.position, prefabRot).GetComponent<Fireball>();
             fireball.movementTargetVector = movementVector;
             fireball.movementTargetPoint = prefabPos;
+            
+            Invoke("setShootingFalse", 0.5f);
         }
     }
 
@@ -167,5 +172,10 @@ public class PlayerMovement : MonoBehaviour
             EvilCloneController evilClone = Instantiate(Resources.Load("EvilClone") as GameObject, new Vector3(0.5f, 0.5f, 0f), Quaternion.identity).GetComponent<EvilCloneController>();
             evilClone.ActionList = new Stack<string>(futureCloneActions);
         }
+    }
+
+    private void setShootingFalse()
+    {
+        anim.SetBool("isShooting", false);
     }
 }

@@ -9,7 +9,12 @@ public class PauseMenu : MonoBehaviour
     public bool isPaused;
     public GameObject pauseMenu;
     public PlayerController playerController;
-    
+
+    private void Start()
+    {
+        playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+    }
+
     public void QuitGame()
     {
         Application.Quit();

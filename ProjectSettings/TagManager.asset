@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemy
   - WinUI
+  - CloneNextAction
   layers:
   - Default
   - TransparentFX

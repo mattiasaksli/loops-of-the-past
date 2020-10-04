@@ -28,7 +28,7 @@ public class EnemiesManager : MonoBehaviour
         {
             NextActionSprite.SetActive(true);
             
-            EvilCloneController evilClone = Instantiate(Resources.Load("EvilClone") as GameObject, new Vector3(0.5f, 0.5f, 0f), Quaternion.identity).GetComponent<EvilCloneController>();
+            EvilCloneController evilClone = Instantiate(Resources.Load("EvilClone") as GameObject, new Vector3(1.5f, 1.5f, 0f), Quaternion.identity).GetComponent<EvilCloneController>();
             evilClone.ActionList = new Stack<string>(InputSaver.saver.GetInputActions());
             evilClone.gameObject.transform.parent = transform;
             

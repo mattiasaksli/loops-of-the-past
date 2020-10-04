@@ -7,6 +7,7 @@ public class GoToNextLevel : MonoBehaviour
 {
     public void LoadNextLevel()
     {
+        gameObject.SetActive(false);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }

@@ -68,6 +68,7 @@ public class EvilCloneController : MonoBehaviour
 
     private void SetNextAction()
     {
+        NextActionSprite.transform.rotation = Quaternion.identity;
         if (ActionList.Count != 0)
         {
             string listAction = ActionList.Pop();
@@ -153,7 +154,7 @@ public class EvilCloneController : MonoBehaviour
     private void MoveUp()
     {
         Vector3 upVec = new Vector3(0f, 1f, 0f);
-        lookDirection = Look.LEFT;
+        lookDirection = Look.UP;
         if (!Physics2D.OverlapCircle(movePoint.position + upVec, 0.2f, movementCollision))
         {
             movePoint.position += upVec;
@@ -163,7 +164,7 @@ public class EvilCloneController : MonoBehaviour
     private void MoveDown()
     {
         Vector3 downVec = new Vector3(0f, -1f, 0f);
-        lookDirection = Look.LEFT;
+        lookDirection = Look.DOWN;
         if (!Physics2D.OverlapCircle(movePoint.position + downVec, 0.2f, movementCollision))
         {
             movePoint.position += downVec;
@@ -199,8 +200,13 @@ public class EvilCloneController : MonoBehaviour
             movementVector.y = -1;
         }
 
-        Fireball fireball = Instantiate(fireballPrefab, transform.position, prefabRot).GetComponent<Fireball>();
+        Fireball fireball = Instantiate(fireballPrefab, transform.position + (0.5f * movementVector), prefabRot).GetComponent<Fireball>();
         fireball.movementTargetVector = movementVector;
         fireball.movementTargetPoint = prefabPos;
+    }
+
+    public void Kill()
+    {
+        EnemyEventManager.TriggerEnemyKilled(gameObject);
     }
 }

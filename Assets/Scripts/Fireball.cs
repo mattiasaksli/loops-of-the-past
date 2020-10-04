@@ -42,6 +42,12 @@ public class Fireball : MonoBehaviour
             Destroy(other.gameObject);
             Destroy(gameObject);
         }
+        else if (other.GetComponent<EvilCloneController>())
+        {
+            other.GetComponent<EvilCloneController>().Kill();
+            Destroy(other.gameObject);
+            Destroy(gameObject);
+        }
     }
 
     private void OnBecameInvisible()

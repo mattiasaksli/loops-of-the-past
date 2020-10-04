@@ -153,3 +153,7 @@ MonoBehaviour:
     m_Bits: 256
   fireballPrefab: {fileID: 4053192426013687566, guid: 9c39f2b3486030c4088e60cb7f8b59fd,
     type: 3}
+  ActionImages:
+  - {fileID: 8081451094515524146, guid: 0cd44b719d12ec646999751c865284f8, type: 3}
+  - {fileID: 7054067008896824730, guid: 0cd44b719d12ec646999751c865284f8, type: 3}
+  NextActionSprite: {fileID: 0}

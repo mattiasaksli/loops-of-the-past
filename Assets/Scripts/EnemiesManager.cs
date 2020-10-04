@@ -3,23 +3,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class EnemiesManager : MonoBehaviour
 {
     public PlayerController player;
     public List<GameObject> enemyObjects;
     public GameObject WinUI;
+    public GameObject NextActionSprite;
     private int scene;
 
     void Start()
     {
         scene = SceneManager.GetActiveScene().buildIndex;
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        
         WinUI = GameObject.FindGameObjectWithTag("WinUI");
         WinUI.SetActive(false);
+        
+        NextActionSprite = GameObject.FindGameObjectWithTag("CloneNextAction");
+        NextActionSprite.SetActive(false);
 
         if (scene > 1)
         {
+            NextActionSprite.SetActive(true);
+            
             EvilCloneController evilClone = Instantiate(Resources.Load("EvilClone") as GameObject, new Vector3(0.5f, 0.5f, 0f), Quaternion.identity).GetComponent<EvilCloneController>();
             evilClone.ActionList = new Stack<string>(InputSaver.saver.GetInputActions());
             evilClone.gameObject.transform.parent = transform;

@@ -6,7 +6,6 @@ using UnityEngine.SceneManagement;
 
 public class PlayerBehaviour : MonoBehaviour
 {
-
     public Animator anim;
     public int Lives = 3;
     public bool isDead;

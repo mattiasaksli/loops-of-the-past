@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
 public class EvilCloneController : MonoBehaviour
@@ -11,6 +12,8 @@ public class EvilCloneController : MonoBehaviour
     public SpriteRenderer evilCloneSprite;
     public LayerMask movementCollision;
     public GameObject fireballPrefab;
+    public Sprite[] ActionImages;
+    public Image NextActionSprite;
 
     private enum Look
     {
@@ -31,6 +34,7 @@ public class EvilCloneController : MonoBehaviour
     void Start()
     {
         movePoint.parent = null;
+        NextActionSprite = GameObject.FindGameObjectWithTag("CloneNextAction").GetComponent<Image>();
         SetNextAction();
     }
 
@@ -71,18 +75,26 @@ public class EvilCloneController : MonoBehaviour
             {
                 case "left":
                     nextAction = MoveLeft;
+                    NextActionSprite.transform.Rotate(new Vector3(0f, 0f, 1f), 180f);
+                    NextActionSprite.sprite = ActionImages[1];
                     break;
                 case "right":
                     nextAction = MoveRight;
+                    NextActionSprite.sprite = ActionImages[1];
                     break;
                 case "up":
                     nextAction = MoveUp;
+                    NextActionSprite.transform.Rotate(new Vector3(0f, 0f, 1f), 90f);
+                    NextActionSprite.sprite = ActionImages[1];
                     break;
                 case "down":
                     nextAction = MoveDown;
+                    NextActionSprite.transform.Rotate(new Vector3(0f, 0f, 1f), -90f);
+                    NextActionSprite.sprite = ActionImages[1];
                     break;
                 case "shoot":
                     nextAction = Shoot;
+                    NextActionSprite.sprite = ActionImages[0];
                     break;
             }
         }
@@ -93,18 +105,26 @@ public class EvilCloneController : MonoBehaviour
             {
                 case 0:
                     nextAction = MoveLeft;
+                    NextActionSprite.transform.Rotate(new Vector3(0f, 0f, 1f), 180f);
+                    NextActionSprite.sprite = ActionImages[1];
                     break;
                 case 1:
                     nextAction = MoveRight;
+                    NextActionSprite.sprite = ActionImages[1];
                     break;
                 case 2:
                     nextAction = MoveUp;
+                    NextActionSprite.transform.Rotate(new Vector3(0f, 0f, 1f), 90f);
+                    NextActionSprite.sprite = ActionImages[1];
                     break;
                 case 3:
                     nextAction = MoveDown;
+                    NextActionSprite.transform.Rotate(new Vector3(0f, 0f, 1f), -90f);
+                    NextActionSprite.sprite = ActionImages[1];
                     break;
                 default:
                     nextAction = Shoot;
+                    NextActionSprite.sprite = ActionImages[0];
                     break;
             }
         }

@@ -41,15 +41,7 @@ public class Slime : MonoBehaviour
     
     private void UpdateMovement()
     {
-        // if (lookDirection == Look.RIGHT) spriteRenderer.flipX = false;
-        // else if (lookDirection == Look.LEFT) spriteRenderer.flipX = true;
-        // else if (lookDirection == Look.UP) transform.Rotate(new Vector3(0, 1, 0), 90f);
-        // else if (lookDirection == Look.DOWN)
-        // {
-        //     transform.Rotate(new Vector3(0, 1, 0), 90f);
-        //     spriteRenderer.flipX = true;
-        // }
-        
+
         Debug.DrawLine(transform.position, movePoint.position, Color.green, 5f);
 
         if (Vector3.Distance(transform.position, movePoint.position) > 0)
@@ -64,10 +56,7 @@ public class Slime : MonoBehaviour
                 movePoint.position = transform.position; // Could not move there, so don't try
             }
         }
-
-
-
-        //transform.position += movementTargetVector * (Time.deltaTime * moveSpeed);
+        
     }
 
     private void OnEnable()

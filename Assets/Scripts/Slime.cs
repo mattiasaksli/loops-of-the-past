@@ -75,6 +75,11 @@ public class Slime : MonoBehaviour
         MovementEventManager.OnPlayerMove -= Move;
     }
 
+    public void Kill()
+    {
+        EnemyEventManager.TriggerEnemyKilled(gameObject);
+    }
+
     private void Move()
     {
         lastGeneratedVector = GenerateRandomDirection();

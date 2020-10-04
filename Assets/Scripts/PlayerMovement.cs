@@ -154,11 +154,5 @@ public class PlayerMovement : MonoBehaviour
             else if (verticalInput > 0) futureCloneActions.Push("up");
             else if (Input.GetKeyDown(KeyCode.Space)) futureCloneActions.Push("shoot");
         }
-        
-        // else if (Input.GetKeyDown(KeyCode.C))
-        // {
-        //     EvilCloneController evilClone = Instantiate(Resources.Load("EvilClone") as GameObject, new Vector3(0.5f, 0.5f, 0f), Quaternion.identity).GetComponent<EvilCloneController>();
-        //     evilClone.ActionList = new Stack<string>(futureCloneActions);
-        // }
     }
 }

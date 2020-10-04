@@ -38,6 +38,7 @@ public class Fireball : MonoBehaviour
     {
         if (other.gameObject.GetComponent<Slime>())
         {
+            other.GetComponent<Slime>().Kill();
             Destroy(other.gameObject);
             Destroy(gameObject);
         }
